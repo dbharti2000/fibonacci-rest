@@ -1,0 +1,45 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="JETTY-FILE" class="ch.qos.logback.core.FileAppender">
+        <file>log/jetty.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="JERSEY-FILE" class="ch.qos.logback.core.FileAppender">
+        <file>log/jersey.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APPLICATION-FILE" class="ch.qos.logback.core.FileAppender">
+        <file>log/fib-service.log</file>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="deng" level="INFO"/>
+
+    <logger name="org.eclipse.jetty.server" level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="JETTY-FILE"/>
+    </logger>
+
+    <logger name="org.glassfish.jersey.server" level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="JERSEY-FILE"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="APPLICATION-FILE" />
+    </root>
+</configuration>
